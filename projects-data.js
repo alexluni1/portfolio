@@ -118,5 +118,90 @@ const projectsData = [
     }`
             }
         ]
-    }
+    },
+    {
+      name: `CSS Animated Button v.1`,
+      description: `This button has a subtle shine effect that moves across it on hover, drawing attention to it.`,
+      imageUrl: `000002.png`,
+      languagesUsed: [`HTML`, `CSS`],
+      sourceCodes: [
+          {
+              languageName: `HTML`,
+              codeContent: `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>CSS Animated Button v.1 (Enhanced Background)</title>
+      <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  
+      <button class="animated-button-v1">
+          Shine On Hover
+      </button>
+  
+  </body>
+  </html>`
+          },
+          {
+              languageName: `CSS`,
+              codeContent: `  /* CSS Animated Button v.1 */
+          .animated-button-v1 {
+              background-color: #007bff; /* Primary blue */
+              color: white;
+              border: none;
+              padding: 15px 30px;
+              text-align: center;
+              text-decoration: none;
+              display: inline-block;
+              font-size: 16px;
+              font-weight: bold;
+              font-family: Arial, sans-serif;
+              border-radius: 8px;
+              cursor: pointer;
+              position: relative;
+              overflow: hidden; /* Important for the shine effect */
+              transition: background-color 0.3s ease;
+          }
+  
+          .animated-button-v1:hover {
+              background-color: #0056b3; /* Darker blue on hover */
+          }
+  
+          .animated-button-v1::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: -100%; /* Start off-screen to the left */
+              width: 50%;
+              height: 100%;
+              background: linear-gradient(
+                  90deg,
+                  transparent,
+                  rgba(255, 255, 255, 0.4), /* Shine color */
+                  transparent
+              );
+              transition: left 0.5s ease-in-out; /* Speed of the shine */
+          }
+  
+          .animated-button-v1:hover::before {
+              left: 150%; /* Move shine across and off-screen to the right */
+          }
+  
+          /* UPDATED: Just for centering the button on the page for the demo */
+          body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-height: 100vh;
+              /* OLD: background-color: #f0f0f0; */
+              /* NEW: Subtle gradient background */
+              background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+              margin: 0;
+              font-family: Arial, sans-serif; /* Added for overall page consistency */
+          }`
+          }
+      ]
+  }
 ];
