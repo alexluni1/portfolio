@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Portfolio | Spectrum</title>
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #4c1d95;
+            --light: #f5f3ff;
+            --dark: #1f1937;
+            --accent: #10b981;
+            --rgb-primary: 124, 58, 237;
+            --rgb-secondary: 76, 29, 149;
+            --rgb-light: 245, 243, 255;
+            --rgb-dark: 31, 25, 55;
+            --rgb-accent: 16, 185, 129;
+            --rgb-youtube-red: 255, 0, 0;
+            --rgb-tiktok-teal: 0, 242, 234;
+            --rgb-instagram-pink: 225, 48, 108;
+            --rgb-instagram-purple: 131, 58, 180;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--dark); color: var(--light); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        header { position: relative; padding: 160px 0 100px; text-align: center; color: var(--light); background: linear-gradient(-45deg, var(--primary), var(--secondary), var(--accent), var(--primary)); background-size: 400% 400%; animation: gradientBG 15s ease infinite; overflow: hidden; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        header::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 20%, var(--dark) 180%); opacity: 0.6; z-index: 0; }
+        .profile-pic { width: 180px; height: 180px; border-radius: 30px; border: 6px solid var(--accent); margin-bottom: 30px; object-fit: cover; position: relative; z-index: 1; background-color: var(--light); opacity: 0; transform: scale(0.8) translateY(20px); animation: profileEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards, profilePulse 2.5s ease-in-out infinite 1s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        @keyframes profileEntrance { to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes profilePulse { 0% { transform: scale(1) translateY(0); box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 0px rgba(var(--rgb-accent), 0.3); } 50% { transform: scale(1.03) translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 0 8px rgba(var(--rgb-accent), 0.3); } 100% { transform: scale(1) translateY(0); box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 0px rgba(var(--rgb-accent), 0.3); } }
+        header h1 { font-size: 3.8rem; margin-bottom: 15px; position: relative; z-index: 1; letter-spacing: 1.5px; font-weight: 700; opacity: 0; transform: translateY(30px); animation: textEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+        header p { font-size: 1.5rem; max-width: 650px; margin: 0 auto 20px auto; position: relative; z-index: 1; line-height: 1.7; opacity: 0; transform: translateY(30px); animation: textEntrance 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        @keyframes textEntrance { to { opacity: 1; transform: translateY(0); } }
+        
+        section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; position: relative; }
+        .section-title::after { content: ""; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--accent); }
+
+        .social-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-top: 40px; }
+        .social-card { position: relative; background: rgba(var(--rgb-light), 0.08); border-radius: 16px; width: 280px; height: 220px; padding: 30px; backdrop-filter: blur(5px); border: 1px solid rgba(var(--rgb-light), 0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--light); overflow: hidden; transition: transform 0.35s ease-out, box-shadow 0.35s ease-out, background 0.4s ease-in-out, border-color 0.4s ease-in-out; }
+        .social-card i { font-size: 3.5rem; margin-bottom: 20px; transition: transform 0.3s ease-out, color 0.3s ease-out, text-shadow 0.3s ease-out; }
+        .social-card.youtube i { color: #FF0000; } .social-card.tiktok i { color: #00f2ea; } .social-card.instagram i { color: #E1306C; }
+        .social-card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35); }
+        .social-card:hover i { transform: scale(1.2); color: #fff; }
+        .social-card.youtube:hover { background: rgba(var(--rgb-dark), 0.3) linear-gradient(135deg, rgba(var(--rgb-youtube-red),0.4) 0%, rgba(var(--rgb-dark),0.2) 100%); border-color: rgba(var(--rgb-youtube-red),0.6); } .social-card.youtube:hover i { text-shadow: 0 0 12px rgba(var(--rgb-youtube-red),0.8); }
+        .social-card.tiktok:hover { background: rgba(var(--rgb-dark), 0.3) linear-gradient(135deg, rgba(var(--rgb-tiktok-teal),0.4) 0%, rgba(var(--rgb-dark),0.2) 100%); border-color: rgba(var(--rgb-tiktok-teal),0.6); } .social-card.tiktok:hover i { text-shadow: 0 0 12px rgba(var(--rgb-tiktok-teal),0.8); }
+        .social-card.instagram:hover { background: rgba(var(--rgb-dark), 0.3) linear-gradient(135deg, rgba(var(--rgb-instagram-pink),0.4) 0%, rgba(var(--rgb-instagram-purple),0.4) 70%, rgba(var(--rgb-dark),0.2) 100%); border-color: rgba(var(--rgb-instagram-pink),0.6); } .social-card.instagram:hover i { text-shadow: 0 0 12px rgba(var(--rgb-instagram-pink),0.7); }
+        .social-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(60deg, transparent, rgba(var(--rgb-light), 0.15), transparent); transition: transform 0.6s ease-out; transform: translateX(-100%) skewX(-20deg); }
+        .social-card:hover::before { transform: translateX(100%) skewX(-20deg); }
+        .social-card h3 { font-size: 1.4rem; margin-bottom: 10px; transition: color 0.3s ease-out; } .social-card:hover h3 { color: var(--accent); }
+        .social-card p { text-align: center; font-size: 0.9rem; opacity: 0.8; }
+
+        /* --- Projects Section (Search with Autocomplete) --- */
+        .search-container-wrapper { /* Wrapper for positioning autocomplete */
+            position: relative;
+            max-width: 700px;
+            margin: 20px auto 0px auto;
+        }
+        .search-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        #projectSearchInput {
+            flex-grow: 1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(var(--rgb-light), 0.1);
+            background: rgba(var(--rgb-light), 0.05);
+            color: var(--light);
+            font-size: 1rem;
+        }
+        #projectSearchInput:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(var(--rgb-accent), 0.2);
+        }
+        #projectSearchBtn {
+            padding: 15px 25px;
+            margin-top: 0; 
+            font-size: 1rem;
+        }
+        #projectSearchBtn i { margin-right: 5px; }
+
+        .autocomplete-results {
+            position: absolute;
+            top: 100%; 
+            left: 0;
+            right: 0; /* Make it full width of search-container-wrapper */
+            width: calc(100% - 135px); /* Approximate width of input if button is fixed, adjust as needed or set to 100% of parent if input is 100% */
+            background-color: #2c254a; /* Slightly lighter than page dark */
+            border: 1px solid rgba(var(--rgb-light), 0.2);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 250px; /* Limit height */
+            overflow-y: auto;
+            z-index: 998; /* Below modal but above other content */
+            display: none; /* Initially hidden */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .autocomplete-results div { /* Individual result item */
+            padding: 12px 15px;
+            color: var(--light);
+            cursor: pointer;
+            border-bottom: 1px solid rgba(var(--rgb-light), 0.1);
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+        .autocomplete-results div:last-child { border-bottom: none; }
+        .autocomplete-results div:hover,
+        .autocomplete-results div.active-suggestion { /* For keyboard navigation (optional) */
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        .autocomplete-results div strong { /* For highlighting match */
+            font-weight: bold;
+            color: var(--primary); /* Or a distinct highlight color */
+        }
+        .autocomplete-results div:hover strong {
+            color: var(--dark);
+        }
+
+
+        #projectSearchResult p { 
+            text-align:center; 
+            opacity:0.7; 
+            margin-top:20px;
+        }
+
+        /* --- Project Modal Styles --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(var(--rgb-dark), 0.9); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+        .modal-overlay.active { opacity: 1; visibility: visible; transition: opacity 0.3s ease, visibility 0s linear 0s; }
+        .modal-content { background-color: #2c254a; padding: 20px; border-radius: 16px; border: 1px solid rgba(var(--rgb-light), 0.15); box-shadow: 0 10px 40px rgba(0,0,0,0.6); width: 90%; max-width: 800px; max-height: 90vh; display: flex; flex-direction: column; position: relative; transform: scale(0.95) translateY(10px); transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 15px; border-bottom: 1px solid rgba(var(--rgb-light), 0.1); margin-bottom:15px;}
+        .modal-header #modalProjectName { font-size: 1.8rem; color: var(--accent); margin: 0; flex-grow: 1; line-height: 1.2;}
+        #copyActiveCodeBtn { background-color: var(--primary); color: var(--light); padding: 8px 15px; font-size: 0.85rem; border-radius: 6px; margin-left:15px;}
+        #copyActiveCodeBtn:hover { background-color: var(--secondary); }
+        #copyActiveCodeBtn.copied { background-color: var(--accent); color: var(--dark); }
+        #copyActiveCodeBtn i { margin-right: 6px;}
+        .modal-close-btn { background: rgba(var(--rgb-light), 0.1); border: none; color: var(--light); font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 0; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s, color 0.2s; }
+        .modal-close-btn:hover { background-color: var(--accent); color: var(--dark); }
+        .modal-body { overflow-y: auto; padding-right: 10px; }
+        .modal-project-image { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; border: 2px solid rgba(var(--rgb-light), 0.1); }
+        .modal-body #modalProjectDescription { font-size: 1rem; margin-bottom: 20px; line-height: 1.7; color: rgba(var(--rgb-light), 0.9); }
+        .modal-section { margin-bottom: 20px; }
+        .modal-section h4 { font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid rgba(var(--rgb-primary), 0.3); padding-bottom: 6px; }
+        #modalProjectLanguages .tag { margin-bottom: 8px; margin-right: 8px; background-color: rgba(var(--rgb-primary), 0.25); color: var(--primary); }
+        
+        .language-tabs-container { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+        .lang-tab-btn { background-color: rgba(var(--rgb-light), 0.05); color: var(--light); border: 1px solid rgba(var(--rgb-light), 0.2); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: background-color 0.3s, color 0.3s, border-color 0.3s; }
+        .lang-tab-btn:hover { background-color: rgba(var(--rgb-accent), 0.2); border-color: var(--accent); color: var(--accent); }
+        .lang-tab-btn.active { background-color: var(--accent); color: var(--dark); border-color: var(--accent); font-weight: bold; }
+
+        #modalCodeDisplayAreaWrapper { position: relative; } /* For potential copy button absolute to this if needed */
+        #modalCodeDisplayArea { background-color: rgba(var(--rgb-dark), 0.95); border: 1px solid rgba(var(--rgb-light), 0.2); border-radius: 8px; padding: 15px; max-height: 350px; overflow: auto; margin-top:10px;}
+        #modalCodeDisplayArea pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 0.9rem; color: #c5c8c6; line-height: 1.6; }
+        #modalCodeDisplayArea code { display: block; }
+        #modalNoCodeMessage { opacity:0.7; font-style: italic; text-align: center; padding: 20px 0; margin-top:10px;}
+
+
+        .tag { display: inline-block; background: rgba(var(--rgb-primary), 0.2); color: var(--primary); padding: 5px 10px; border-radius: 50px; font-size: 0.8rem; margin-right: 10px; margin-bottom: 10px; }
+        .btn { display: inline-block; background: var(--accent); color: var(--dark); padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; margin-top: 15px; border: none; cursor: pointer; }
+        .btn:hover { background: #0ea271; transform: scale(1.05); box-shadow: 0 8px 15px rgba(var(--rgb-accent),0.2); }
+        
+        .about { background: rgba(var(--rgb-light), 0.03); border-radius: 16px; padding: 40px; backdrop-filter: blur(5px); border: 1px solid rgba(var(--rgb-light), 0.05); max-width: 800px; margin: 0 auto; }
+        .about p { margin-bottom: 20px; font-size: 1.1rem; }
+        .skill-bars { margin-top: 30px; } .skill { margin-bottom: 20px; } .skill-name { display: flex; justify-content: space-between; margin-bottom: 8px; }
+        .skill-bar { height: 10px; background: rgba(var(--rgb-light), 0.1); border-radius: 5px; overflow: hidden; }
+        .skill-progress { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--accent), var(--primary)); transition: width 1s ease-out; }
+
+        .contact-info-wrapper { text-align: center; max-width: 700px; margin: 0 auto; background: rgba(var(--rgb-light), 0.03); border-radius: 16px; padding: 40px; backdrop-filter: blur(5px); border: 1px solid rgba(var(--rgb-light), 0.05); }
+        .contact-info-wrapper p { font-size: 1.1rem; margin-bottom: 25px; line-height: 1.7; }
+        #emailDisplay { display: none; margin-top: 25px; font-size: 1.3em; color: var(--accent); font-weight: 600; padding: 10px; border-radius: 8px; background-color: rgba(var(--rgb-dark), 0.5); border: 1px dashed var(--accent); user-select: all; -webkit-user-select: all; -moz-user-select: all; word-break: break-all; }
+        #revealEmailBtn i { margin-right: 8px; }
+
+        footer { text-align: center; padding: 40px 0; background: rgba(0, 0, 0, 0.2); }
+        .footer-links { display: flex; justify-content: center; margin-bottom: 20px; }
+        .footer-links a { color: var(--light); margin: 0 15px; font-size: 1.5rem; transition: color 0.3s, transform 0.3s; }
+        .footer-links a:hover { color: var(--accent); transform: scale(1.1); }
+        .copyright { opacity: 0.7; font-size: 0.9rem; }
+        
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animate-on-scroll.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 992px) { 
+            header h1 { font-size: 3.2rem; } header p { font-size: 1.3rem; } .profile-pic { width: 160px; height: 160px; }
+            .social-card { width: 260px; height: 200px; } .social-card i { font-size: 3rem; }
+            .contact-info-wrapper { padding: 30px; }
+            #projectSearchInput, #projectSearchBtn { font-size: 0.95rem; padding: 12px; } #projectSearchBtn { padding: 12px 20px;}
+            .modal-content { padding: 25px; } .modal-header #modalProjectName { font-size: 1.6rem; }
+            .autocomplete-results { width: calc(100% - 125px); /* Adjust based on button size at this breakpoint */ }
+
+        }
+        @media (max-width: 768px) { 
+            header { padding: 120px 0 80px; } header h1 { font-size: 2.5rem; } header p { font-size: 1.1rem; } .profile-pic { width: 140px; height: 140px; border-width: 4px; }
+            .section-title { font-size: 2rem; }
+            .social-links { gap: 20px; } .social-card { width: 100%; max-width: 320px; height: auto; padding: 25px; } .social-card i { font-size: 2.8rem; }
+            .about { padding: 30px 20px; }
+            .contact-info-wrapper { max-width: 100%; padding: 25px; } .contact-info-wrapper p { font-size: 1rem; } #emailDisplay { font-size: 1.1em; }
+            .search-container-wrapper { margin: 20px 0 0 0; } /* Remove horizontal auto margin for full width behavior */
+            .search-container { flex-direction: column; gap: 15px; } 
+            #projectSearchInput, #projectSearchBtn { width: 100%; }
+            .autocomplete-results { width: 100%; position: static; /* Or relative if needed, but not absolute to a shrinking parent */ border-radius: 8px; margin-top:5px;}
+
+            .modal-content { padding: 20px; width: 95%; } .modal-header #modalProjectName { font-size: 1.5rem; } .modal-close-btn { font-size: 1.8rem; top:8px; right: 8px; width:30px; height:30px;}
+            .modal-body { padding-right: 5px; }
+            .language-tabs-container { gap: 8px; } .lang-tab-btn { padding: 6px 12px; font-size: 0.85rem; }
+            #modalCodeDisplayArea { padding: 10px; max-height: 280px;} #modalCodeDisplayArea pre { font-size: 0.85rem;}
+        }
+        @media (max-width: 480px) { 
+            header { padding: 100px 0 60px; } header h1 { font-size: 2rem; } header p { font-size: 1rem; } .profile-pic { width: 120px; height: 120px; }
+            .section-title { font-size: 1.8rem; }
+            .social-card i { font-size: 2.5rem; } .social-card h3 { font-size: 1.2rem; }
+            .btn, #projectSearchBtn { padding: 10px 20px; font-size: 0.9rem; }
+            .footer-links a { font-size: 1.3rem; margin: 0 10px; }
+            .contact-info-wrapper { padding: 20px 15px; } #revealEmailBtn { font-size: 1rem; }
+            #projectSearchInput { font-size: 0.9rem; padding: 10px; }
+            .modal-header #modalProjectName { font-size: 1.3rem; }
+            .lang-tab-btn { padding: 5px 10px; font-size: 0.8rem; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="logo.png" alt="My Profile Picture" class="profile-pic">
+            <h1>My Digital Portfolio</h1>
+            <p>Developer | Content Creator | Digital Innovator</p>
+        </div>
+    </header>
+
+    <section id="social">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">My Social Channels</h2>
+            <div class="social-links">
+                <a href="https://www.youtube.com/channel/UCUENd_bgwBCyvnZ07rna9uQ" target="_blank" rel="noopener noreferrer" class="social-card youtube animate-on-scroll">
+                    <i class="fab fa-youtube"></i>
+                    <h3>YouTube</h3>
+                    <p>Tutorials, projects, and educational content about the world of programming.</p>
+                </a>
+                <a href="https://www.tiktok.com/@sampectrum" target="_blank" rel="noopener noreferrer" class="social-card tiktok animate-on-scroll">
+                    <i class="fab fa-tiktok"></i>
+                    <h3>TikTok</h3>
+                    <p>Quick tips, tricks, and short content on programming.</p>
+                </a>
+                <a href="https://www.instagram.com/sampectrum" target="_blank" rel="noopener noreferrer" class="social-card instagram animate-on-scroll">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <p>Project updates and behind-the-scenes of my work.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Search My Projects</h2>
+            <div class="search-container-wrapper animate-on-scroll">
+                <div class="search-container">
+                    <input type="text" id="projectSearchInput" placeholder="Enter project name..." autocomplete="off">
+                    <button id="projectSearchBtn" class="btn"><i class="fas fa-search"></i> Search</button>
+                </div>
+                <div id="autocompleteResults" class="autocomplete-results"></div>
+            </div>
+            <div id="projectSearchResult"> 
+                <p id="searchPlaceholder" style="text-align:center; opacity:0.7; margin-top:20px;">Type a project name above. Suggestions will appear as you type.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">About Me</h2>
+            <div class="about animate-on-scroll">
+                <p>I am a passionate developer and content creator in the field of programming. My mission is to share knowledge and simplify complex concepts through my content on social media.</p>
+                <p>With years of experience in software development, I enjoy exploring new technologies and sharing my discoveries with my community. My goal is to inspire other technology enthusiasts to bring their projects to life.</p>
+                <div class="skill-bars">
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Front-end Development</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Back-end Development</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>Content Creation</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-name">
+                            <span>UI/UX Design</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Contact Me</h2>
+            <div class="contact-info-wrapper animate-on-scroll">
+                <p>
+                    Interested in collaborating on a project, have a corporate inquiry, or a suggestion for what I should create next? I'd love to hear from you! Click the button below to reveal my email address.
+                </p>
+                <button id="revealEmailBtn" class="btn" style="padding: 12px 30px; font-size: 1.1rem;">
+                    <i class="fas fa-envelope"></i> Reveal My Email
+                </button>
+                <p id="emailDisplay"></p> 
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalProjectName"></h3>
+                <button id="copyActiveCodeBtn" class="btn" style="display:none; padding: 8px 15px; font-size: 0.85rem; margin-left:15px; margin-top:0;"><i class="fas fa-copy"></i> Copy Code</button>
+                <button id="closeModalBtn" class="modal-close-btn" aria-label="Close modal">×</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalProjectImage" src="" alt="Project Image" class="modal-project-image" style="display:none;">
+                <p id="modalProjectDescription"></p>
+                
+                <div class="modal-section">
+                    <h4>Languages Used:</h4>
+                    <div id="modalProjectLanguages" class="project-tags"></div>
+                </div>
+                <div class="modal-section">
+                    <h4>Source Code:</h4>
+                    <div id="modalLanguageTabs" class="language-tabs-container">
+                        </div>
+                    <div id="modalCodeDisplayAreaWrapper">
+                        <div id="modalCodeDisplayArea" class="code-viewer" style="display:none;"> 
+                            <pre><code></code></pre>
+                        </div>
+                        <p id="modalNoCodeMessage" style="display:block; opacity:0.7; text-align:center; padding: 20px 0;">Select a language tab above to view its code.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.youtube.com/channel/UCUENd_bgwBCyvnZ07rna9uQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@sampectrum" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/sampectrum" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">© 2025 Spectrum. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="projects-data.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        function checkScroll() {
+            animateElements.forEach(element => {
+                if (!element.classList.contains('active')) {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (elementTop < windowHeight - 80) {
+                        element.classList.add('active');
+                    }
+                }
+            });
+        }
+        if (animateElements.length > 0) {
+            checkScroll();
+            window.addEventListener('scroll', checkScroll);
+            window.addEventListener('resize', checkScroll);
+        }
+
+        // Skill bars animation
+        const aboutSection = document.querySelector('#about .about');
+        if (aboutSection) {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            if (skillBars.length > 0) {
+                let skillsAnimated = false;
+                const skillObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !skillsAnimated) {
+                            skillBars.forEach(bar => {
+                                const targetWidth = bar.style.width;
+                                bar.style.width = '0';
+                                setTimeout(() => {
+                                    bar.style.width = targetWidth;
+                                }, 150);
+                            });
+                            skillsAnimated = true;
+                        }
+                    });
+                }, { threshold: 0.4 });
+                skillObserver.observe(aboutSection);
+            }
+        }
+
+        // Email Reveal Handler
+        const revealEmailBtn = document.getElementById('revealEmailBtn');
+        const emailDisplay = document.getElementById('emailDisplay');
+        const userEmailAddress = "alexlunax074@gmail.com";
+        if (revealEmailBtn && emailDisplay) {
+            revealEmailBtn.addEventListener('click', function() {
+                emailDisplay.textContent = userEmailAddress;
+                emailDisplay.style.display = 'block';
+                revealEmailBtn.style.display = 'none';
+            });
+        }
+
+        // Project Search, Autocomplete, and Modal Functionality
+        const searchInput = document.getElementById('projectSearchInput');
+        const searchBtn = document.getElementById('projectSearchBtn');
+        const autocompleteResultsContainer = document.getElementById('autocompleteResults');
+        const searchResultMsgContainer = document.getElementById('projectSearchResult'); // For messages like "not found"
+        const searchPlaceholder = document.getElementById('searchPlaceholder');
+
+
+        const modalOverlay = document.getElementById('projectModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalProjectImage = document.getElementById('modalProjectImage');
+        const modalProjectName = document.getElementById('modalProjectName');
+        const modalProjectDescription = document.getElementById('modalProjectDescription');
+        const modalProjectLanguages = document.getElementById('modalProjectLanguages');
+        const modalLanguageTabsContainer = document.getElementById('modalLanguageTabs');
+        const modalCodeDisplayArea = document.getElementById('modalCodeDisplayArea');
+        const modalCodeDisplayPreCode = modalCodeDisplayArea ? modalCodeDisplayArea.querySelector('pre code') : null;
+        const modalNoCodeMessage = document.getElementById('modalNoCodeMessage');
+        const copyActiveCodeBtn = document.getElementById('copyActiveCodeBtn');
+
+        let currentVisibleCodeContent = ""; 
+        let currentProjectForModal = null; // To store the full project object for the modal
+
+        function openModal() {
+            if (modalOverlay) {
+                modalOverlay.style.display = 'flex';
+                setTimeout(() => modalOverlay.classList.add('active'), 10);
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal() {
+            if (modalOverlay) {
+                modalOverlay.classList.remove('active');
+                setTimeout(() => {
+                    modalOverlay.style.display = 'none';
+                    if(modalLanguageTabsContainer) modalLanguageTabsContainer.innerHTML = '';
+                    if(modalCodeDisplayPreCode) modalCodeDisplayPreCode.textContent = '';
+                    if(modalCodeDisplayArea) modalCodeDisplayArea.style.display = 'none';
+                    if(modalNoCodeMessage) modalNoCodeMessage.style.display = 'block';
+                    if(copyActiveCodeBtn) copyActiveCodeBtn.style.display = 'none';
+                    currentVisibleCodeContent = "";
+                    currentProjectForModal = null;
+                }, 300);
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if (modalOverlay) modalOverlay.addEventListener('click', e => e.target === modalOverlay && closeModal());
+        document.addEventListener('keydown', e => e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('active') && closeModal());
+
+        if (copyActiveCodeBtn) {
+            copyActiveCodeBtn.addEventListener('click', function() {
+                if (currentVisibleCodeContent) {
+                    navigator.clipboard.writeText(currentVisibleCodeContent).then(() => {
+                        const originalHTML = copyActiveCodeBtn.innerHTML;
+                        copyActiveCodeBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        copyActiveCodeBtn.classList.add('copied');
+                        setTimeout(() => {
+                            copyActiveCodeBtn.innerHTML = '<i class="fas fa-copy"></i> Copy Code';
+                            copyActiveCodeBtn.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy code: ', err);
+                        alert('Failed to copy code.');
+                    });
+                }
+            });
+        }
+
+        function displayCodeForLanguage(selectedLanguageName, sourceCodes) {
+            const codeSnippet = sourceCodes.find(snippet => snippet.languageName === selectedLanguageName);
+            if (codeSnippet && typeof codeSnippet.codeContent === 'string' && codeSnippet.codeContent.trim() !== '' && modalCodeDisplayPreCode && modalCodeDisplayArea && modalNoCodeMessage && copyActiveCodeBtn) {
+                modalCodeDisplayPreCode.textContent = codeSnippet.codeContent;
+                currentVisibleCodeContent = codeSnippet.codeContent;
+                modalCodeDisplayArea.style.display = 'block';
+                modalNoCodeMessage.style.display = 'none';
+                copyActiveCodeBtn.style.display = 'inline-flex';
+            } else if (modalCodeDisplayArea && modalNoCodeMessage && copyActiveCodeBtn) {
+                if(modalCodeDisplayPreCode) modalCodeDisplayPreCode.textContent = '';
+                currentVisibleCodeContent = "";
+                modalCodeDisplayArea.style.display = 'none';
+                modalNoCodeMessage.textContent = codeSnippet ? `No code available for ${selectedLanguageName}.` : 'Select a language tab.';
+                modalNoCodeMessage.style.display = 'block';
+                copyActiveCodeBtn.style.display = 'none';
+            }
+
+            const tabs = modalLanguageTabsContainer.querySelectorAll('.lang-tab-btn');
+            tabs.forEach(t => t.classList.remove('active'));
+            const activeTab = modalLanguageTabsContainer.querySelector(`.lang-tab-btn[data-lang="${selectedLanguageName}"]`);
+            if (activeTab) activeTab.classList.add('active');
+        }
+
+        function displayProjectInModal(project) {
+            currentProjectForModal = project; // Store the project
+            console.log("Displaying project in modal:", project);
+            if (!project || !modalOverlay) {
+                if (searchResultMsgContainer) searchResultMsgContainer.innerHTML = '<p>Project details could not be loaded.</p>';
+                if (searchPlaceholder) searchPlaceholder.style.display = 'none';
+                return;
+            }
+
+            if(modalProjectName) modalProjectName.textContent = project.name || "Unnamed Project";
+            if(modalProjectDescription) modalProjectDescription.textContent = project.description || "No description.";
+            if(modalProjectImage) {
+                if (project.imageUrl) {
+                    modalProjectImage.src = project.imageUrl;
+                    modalProjectImage.alt = project.name || "Project Image";
+                    modalProjectImage.style.display = 'block';
+                } else {
+                    modalProjectImage.style.display = 'none';
+                }
+            }
+
+            if(modalProjectLanguages) {
+                modalProjectLanguages.innerHTML = project.languagesUsed && project.languagesUsed.length > 0
+                    ? project.languagesUsed.map(lang => `<span class="tag">${lang}</span>`).join('')
+                    : '<span>No specific languages listed.</span>';
+            }
+            
+            if (modalLanguageTabsContainer && modalCodeDisplayArea && modalNoCodeMessage && copyActiveCodeBtn) {
+                modalLanguageTabsContainer.innerHTML = '';
+                modalCodeDisplayPreCode.textContent = '';
+                modalCodeDisplayArea.style.display = 'none';
+                modalNoCodeMessage.textContent = 'Select a language tab to view code.';
+                modalNoCodeMessage.style.display = 'block';
+                copyActiveCodeBtn.style.display = 'none';
+                currentVisibleCodeContent = "";
+
+                if (project.sourceCodes && Array.isArray(project.sourceCodes) && project.sourceCodes.length > 0) {
+                    project.sourceCodes.forEach((codeSnippet, index) => {
+                        if (codeSnippet && codeSnippet.languageName) {
+                            const tabButton = document.createElement('button');
+                            tabButton.className = 'lang-tab-btn';
+                            tabButton.textContent = codeSnippet.languageName;
+                            tabButton.setAttribute('data-lang', codeSnippet.languageName);
+                            tabButton.addEventListener('click', function() {
+                                displayCodeForLanguage(codeSnippet.languageName, project.sourceCodes);
+                            });
+                            modalLanguageTabsContainer.appendChild(tabButton);
+
+                            if (index === 0) { // Automatically display the first code snippet
+                               setTimeout(() => displayCodeForLanguage(codeSnippet.languageName, project.sourceCodes), 0);
+                            }
+                        }
+                    });
+                     if (project.sourceCodes.length === 0) {
+                         modalNoCodeMessage.textContent = 'No source code snippets provided for this project.';
+                     }
+                } else {
+                    modalNoCodeMessage.textContent = 'No source code snippets available for this project.';
+                }
+            }
+            
+            openModal();
+        }
+
+        function performSearch(query) {
+            if (searchPlaceholder) searchPlaceholder.style.display = 'block';
+            if (searchResultMsgContainer) searchResultMsgContainer.innerHTML = ''; // Clear previous "not found" messages
+            
+            const searchTerm = query.trim().toLowerCase();
+            if (!searchTerm) {
+                if (searchPlaceholder) searchPlaceholder.textContent = 'Please enter a project name to search.';
+                if (autocompleteResultsContainer) autocompleteResultsContainer.style.display = 'none';
+                return null; // Return null if search term is empty
+            }
+
+            console.log("Searching for (exact match):", searchTerm, "| projectsData available:", typeof projectsData);
+
+            if (typeof projectsData !== 'undefined' && Array.isArray(projectsData) && projectsData.length > 0) {
+                const foundProject = projectsData.find(p => p && typeof p.name === 'string' && p.name.toLowerCase() === searchTerm);
+                console.log("Found project (exact match):", foundProject);
+                return foundProject; // Return the project or undefined
+            } else {
+                if (searchPlaceholder) searchPlaceholder.style.display = 'none';
+                if (searchResultMsgContainer) searchResultMsgContainer.innerHTML = '<p>Project data is not loaded or empty. Ensure <code>projects-data.js</code> is correct.</p>';
+                console.error("projectsData is undefined, not an array, or empty.");
+                return null;
+            }
+        }
+
+        if (searchInput && autocompleteResultsContainer) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.trim().toLowerCase();
+                autocompleteResultsContainer.innerHTML = '';
+
+                if (query.length < 1) { // Show dropdown only if at least 1 char
+                    autocompleteResultsContainer.style.display = 'none';
+                    if(searchPlaceholder) searchPlaceholder.textContent = 'Type a project name. Suggestions will appear.';
+                    return;
+                }
+
+                if (typeof projectsData !== 'undefined' && Array.isArray(projectsData)) {
+                    const filteredProjects = projectsData.filter(project =>
+                        project && typeof project.name === 'string' && project.name.toLowerCase().includes(query)
+                    );
+
+                    if (filteredProjects.length > 0) {
+                        filteredProjects.forEach(project => {
+                            const item = document.createElement('div');
+                            // Highlight matched part
+                            const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi'); // Escape query for regex
+                            item.innerHTML = project.name.replace(regex, '<strong>$1</strong>');
+                            
+                            item.addEventListener('click', function() {
+                                searchInput.value = project.name; 
+                                autocompleteResultsContainer.style.display = 'none';
+                                if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                                displayProjectInModal(project); 
+                            });
+                            autocompleteResultsContainer.appendChild(item);
+                        });
+                        autocompleteResultsContainer.style.display = 'block';
+                        if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                    } else {
+                        autocompleteResultsContainer.style.display = 'none';
+                        if(searchPlaceholder) searchPlaceholder.textContent = 'No projects match your current typing.';
+                    }
+                }
+            });
+
+            // Hide autocomplete when clicking outside
+            document.addEventListener('click', function(event) {
+                if (autocompleteResultsContainer && searchInput) {
+                    if (!searchInput.contains(event.target) && !autocompleteResultsContainer.contains(event.target)) {
+                        autocompleteResultsContainer.style.display = 'none';
+                    }
+                }
+            });
+             // Show autocomplete on focus if there's text
+            searchInput.addEventListener('focus', function() {
+                if (this.value.trim().length > 0 && autocompleteResultsContainer.children.length > 0) {
+                    autocompleteResultsContainer.style.display = 'block';
+                }
+            });
+        }
+        
+        if (searchBtn && searchInput) { // For the main search button (exact match)
+            searchBtn.addEventListener('click', function() {
+                const project = performSearch(searchInput.value);
+                if (project) {
+                    if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                    if (autocompleteResultsContainer) autocompleteResultsContainer.style.display = 'none';
+                    displayProjectInModal(project);
+                } else if (searchInput.value.trim() !== "") { // Only show not found if search was attempted
+                    if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                    if (searchResultMsgContainer) searchResultMsgContainer.innerHTML = '<p>Project not found. Please check the name and try again or use suggestions as you type.</p>';
+                }
+            });
+            searchInput.addEventListener('keypress', function(event) { // Exact match on enter
+                if (event.key === 'Enter') {
+                    event.preventDefault(); 
+                    const project = performSearch(this.value);
+                     if (project) {
+                        if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                        if (autocompleteResultsContainer) autocompleteResultsContainer.style.display = 'none';
+                        displayProjectInModal(project);
+                    } else if (this.value.trim() !== "") {
+                        if(searchPlaceholder) searchPlaceholder.style.display = 'none';
+                        if (searchResultMsgContainer) searchResultMsgContainer.innerHTML = '<p>Project not found. Please check the name and try again or use suggestions as you type.</p>';
+                    }
+                }
+            });
+        }
+
+    });
+    </script>
+</body>
+</html>
